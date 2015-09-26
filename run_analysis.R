@@ -56,4 +56,4 @@ mergedDF = rbind(testDF, trainDF)
 mergedDF$Activity_ID = NULL
 
 ## create the file
-write.table(mergedDF, row.names = TRUE, file = "tidy_data.txt")
+write.table(mergedDF, row.names=FALSE, col.names=TRUE, file = "tidy_data.txt")
