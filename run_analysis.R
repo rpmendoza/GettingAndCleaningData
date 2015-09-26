@@ -11,6 +11,9 @@
 
 ## code is at the "base" folder along with the data
 
+## load the data.table package to use later
+require("data.table")
+
 ## read the files
 activities <- read.table(file="activity_labels.txt")
 features <- read.table(file="features.txt")
@@ -49,6 +52,8 @@ trainDF <- cbind(as.data.table(subject_train), y_train, x_train)
 ## merge the test and train data frames into one
 mergedDF = rbind(testDF, trainDF)
 
-## create the tidy data
+## remove the activity ID column to create the tidy data
+mergedDF$Activity_ID = NULL
 
-## calculate the average of each variable
+## create the file
+write.table(mergedDF, row.names = TRUE, file = "tidy_data.txt")
