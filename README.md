@@ -1,4 +1,4 @@
-# Readme that describes the run_analysis.R file
+# README
 
 The run_analysis.R file reads and analyzes wearable data for 30 subjects/volunteers. The script first loads the data.table and dplyr packages. It then reads the files related to the volunteers' activites (walking, standing, etc) as well as the devices' features (x, y, z movement coordinates). The volunteers were randomly divided into training and testing. The script reads the testing data first, then the training data.
 
