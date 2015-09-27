@@ -11,8 +11,9 @@
 
 ## code is at the "base" folder along with the data
 
-## load the data.table package to use later
+## load the packages to use later
 require("data.table")
+require("dplyr")
 
 ## read the files
 activities <- read.table(file="activity_labels.txt")
@@ -52,8 +53,10 @@ trainDF <- cbind(as.data.table(subject_train), y_train, x_train)
 ## merge the test and train data frames into one
 mergedDF = rbind(testDF, trainDF)
 
-## remove the activity ID column to create the tidy data
+## remove the activity ID column
 mergedDF$Activity_ID = NULL
 
-## create the file
-write.table(mergedDF, row.names=FALSE, col.names=TRUE, file = "tidy_data.txt")
+## create a tidy data set and create the file
+tidy_data <- mergedDF %>% group_by(Volunteer, Activity_Name)
+tidy_data <- tidy_data %>% summarize_each(funs(mean))
+write.table(tidy_data, row.names=FALSE, col.names=TRUE, file = "tidy_data.txt")
